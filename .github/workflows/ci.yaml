@@ -1,6 +1,6 @@
 name: CI
 env:
-  micromamba_version: 1.3
+  micromamba_version: 2.0.0-0
 
 on:
   push:
@@ -45,6 +45,9 @@ jobs:
           environment-file: ci/environment.yml
           extra-specs: |
             python=${{ matrix.python-version }}
+          init-shell: >-
+            bash
+          post-cleanup: "all"
       - name: Fetch all history for all tags and branches
         run: |
            git fetch --prune --unshallow
